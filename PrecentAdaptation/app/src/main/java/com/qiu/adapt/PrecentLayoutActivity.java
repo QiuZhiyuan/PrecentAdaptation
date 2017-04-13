@@ -16,6 +16,5 @@ public class PrecentLayoutActivity extends Activity {
         PrecentSizeUtil.i().init(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.precent_layout);
-
     }
 }

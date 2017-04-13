@@ -11,11 +11,11 @@ import com.qiu.adapt.util.PrecentEntry;
  * Created by qiu on 16/11/23.
  */
 
-public class DesignTextView extends TextView {
+public class PrecentTextView extends TextView {
 
     private PrecentEntry precentEntry;
 
-    public DesignTextView(Context context, AttributeSet attrs) {
+    public PrecentTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         precentEntry = new PrecentEntry(context,attrs);

@@ -8,6 +8,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="design_width"
+            android:value="750" />
+        <meta-data
+            android:name="design_height"
+            android:value="1334" />
+
         <activity android:name=".PrecentLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

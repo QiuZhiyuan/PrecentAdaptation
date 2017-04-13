@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qiu.adaptation.demo.widget.PrecentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:adaptation="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#550000ff"
+    android:paddingTop="25dp">
+
+    <com.qiu.adaptation.demo.widget.DesignTextView
+        android:id="@+id/title"
+        android:layout_width="311dp"
+        android:layout_height="50dp"
+        android:background="#66ff0000"
+        android:gravity="center"
+        android:text="按比例适配" />
+
+
+    <com.qiu.adaptation.demo.widget.PrecentLinearLayout
+        android:layout_width="311dp"
+        android:layout_height="300dp"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="50dp"
+        android:background="#6600ff00"
+        android:paddingLeft="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="#000000"
+            android:text="HelloWorld"
+            android:textColor="#ffffff"
+            adaptation:p_margin_top="50" />
+    </com.qiu.adaptation.demo.widget.PrecentLinearLayout>
+
+</com.qiu.adaptation.demo.widget.PrecentRelativeLayout>

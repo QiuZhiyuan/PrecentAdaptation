@@ -1,53 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.qiu.adapt.widget.PrecentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:adaptation="http://schemas.android.com/apk/res-auto"
+<com.qiu.adapt.widget.PrecentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#550000ff"
     android:orientation="vertical"
-    adaptation:p_padding_left="100"
-    adaptation:p_padding_top="50">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#66ff0000"
-        android:text="按比例适配"
-        adaptation:p_layout_height="100"
-        adaptation:p_layout_margin_left="120"
-        adaptation:p_layout_width="622"
-        adaptation:p_padding_left="100" />
-
-    <com.qiu.adapt.widget.PrecentTextView
-        android:id="@+id/compare"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_below="@id/title"
-        android:background="#66ffff00"
-        android:gravity="center"
-        android:text="按比例适配"
-        android:textSize="20sp"
-        adaptation:p_layout_height="100"
-        adaptation:p_layout_width="622" />
+    android:paddingTop="100dp">
 
     <com.qiu.adapt.widget.PrecentLinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="311dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:background="#66ff0000"
+            android:paddingLeft="10dp"
+            android:text="按比例适配" />
+
+        <com.qiu.adapt.widget.PrecentTextView
+            android:id="@+id/compare"
+            android:layout_width="311dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/title"
+            android:background="#66ffff00"
+            android:gravity="center"
+            android:text="按比例适配"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="#3300ffff"
+            android:paddingBottom="10dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_launcher" />
+    </com.qiu.adapt.widget.PrecentLinearLayout>
+
+
+    <com.qiu.adapt.widget.PrecentLinearLayout
+        android:layout_width="311dp"
+        android:layout_height="200dp"
         android:layout_below="@id/title"
         android:background="#6600ff00"
-        adaptation:p_layout_height="600"
-        adaptation:p_layout_margin_left="100"
-        adaptation:p_layout_width="622"
-        adaptation:p_padding_left="100">
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="#000000"
+            android:padding="15dp"
             android:text="HelloWorld"
-            android:textColor="#ffffff"
-            adaptation:p_layout_margin_top="50" />
+            android:textColor="#ffffff" />
     </com.qiu.adapt.widget.PrecentLinearLayout>
 
-</com.qiu.adapt.widget.PrecentRelativeLayout>
+</com.qiu.adapt.widget.PrecentLinearLayout>

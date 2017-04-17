@@ -38,6 +38,7 @@ public final class PrecentHelper {
 
     private static final String META_DESIGN_WIDTH = "design_width";
     private static final String META_DESIGN_HEIGHT = "design_height";
+    private static final String META_DESIGN_DENSITY = "design_density";
 
     public static PrecentHelper i() {
         if (instance == null) {
@@ -57,6 +58,7 @@ public final class PrecentHelper {
             if (applicationInfo != null && applicationInfo.metaData != null) {
                 designWidth = (int) applicationInfo.metaData.get(META_DESIGN_WIDTH);
                 designHeight = (int) applicationInfo.metaData.get(META_DESIGN_HEIGHT);
+                designDensity = (int) applicationInfo.metaData.get(META_DESIGN_DENSITY);
             }
 
         } catch (PackageManager.NameNotFoundException e) {
@@ -101,14 +103,14 @@ public final class PrecentHelper {
 
     public int getPrecentByWidth(int width) {
         if (getDesignWidth() > 0 && getScreenWidth() > 0) {
-            return (int) (width / (float) getDesignWidth() * getScreenWidth());
+            return (int) ((width / (float) getDesignWidth() * getScreenWidth()) * getDesignDensity() / getDensity());
         }
         return width;
     }
 
     public int getPrecentByHeight(int height) {
         if (getDesignHeight() > 0 && getScreenHeight() > 0) {
-            return (int) (height / (float) getDesignHeight() * getScreenHeight());
+            return (int) (height / (float) getDesignHeight() * getScreenHeight() * getDesignDensity() / getDensity());
         }
 
         return height;

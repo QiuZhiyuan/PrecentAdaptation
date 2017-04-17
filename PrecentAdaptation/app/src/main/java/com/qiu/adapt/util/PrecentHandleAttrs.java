@@ -41,20 +41,21 @@ public class PrecentHandleAttrs {
         if (context == null || attrs == null) {
             return;
         }
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.adaptation);
-        initParams(typedArray);
+
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.Precent);
+        initTypeArray(typedArray);
         typedArray.recycle();
     }
 
-    protected void initParams(TypedArray typedArray) {
+    protected void initTypeArray(TypedArray typedArray) {
         if (typedArray == null) {
             return;
         }
-        width = typedArray.getInt(R.styleable.adaptation_p_layout_width, DV);
+        width = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_width, DV);
         if (checkNum(width)) {
             width = PrecentHelper.i().getPrecentByWidth(width);
         }
-        height = typedArray.getInt(R.styleable.adaptation_p_layout_height, DV);
+        height = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_height, DV);
         if (checkNum(height)) {
             height = PrecentHelper.i().getPrecentByHeight(height);
         }
@@ -65,46 +66,68 @@ public class PrecentHandleAttrs {
     }
 
     private void initPaddings(TypedArray typedArray) {
-        paddingLeft = typedArray.getInt(R.styleable.adaptation_p_padding_left, DV);
+        int padding = typedArray.getLayoutDimension(R.styleable.Precent_android_padding, DV);
+
+        paddingLeft = typedArray.getLayoutDimension(R.styleable.Precent_android_paddingLeft, DV);
         if (checkNum(paddingLeft)) {
             paddingLeft = PrecentHelper.i().getPrecentByWidth(paddingLeft);
+        } else if (checkNum(padding)) {
+            paddingLeft = padding;
         }
-        paddingRight = typedArray.getInt(R.styleable.adaptation_p_padding_right, DV);
+
+        paddingRight = typedArray.getLayoutDimension(R.styleable.Precent_android_paddingRight, DV);
         if (checkNum(paddingRight)) {
             paddingRight = PrecentHelper.i().getPrecentByWidth(paddingLeft);
+        } else if (checkNum(padding)) {
+            paddingRight = padding;
         }
 
-        paddingTop = typedArray.getInt(R.styleable.adaptation_p_padding_top, DV);
+        paddingTop = typedArray.getLayoutDimension(R.styleable.Precent_android_paddingTop, DV);
         if (checkNum(paddingTop)) {
             paddingTop = PrecentHelper.i().getPrecentByHeight(paddingTop);
+        } else if (checkNum(padding)) {
+            paddingTop = padding;
         }
 
-        paddingBottom = typedArray.getInt(R.styleable.adaptation_p_padding_bottom, DV);
+        paddingBottom = typedArray.getLayoutDimension(R.styleable.Precent_android_paddingBottom, DV);
         if (checkNum(paddingBottom)) {
             paddingBottom = PrecentHelper.i().getPrecentByHeight(paddingBottom);
+        } else if (checkNum(padding)) {
+            paddingBottom = padding;
         }
     }
 
 
     private void initMargins(TypedArray typedArray) {
-        marginLeft = typedArray.getInt(R.styleable.adaptation_p_layout_margin_left, DV);
+        int margin = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_margin, DV);
+
+
+        marginLeft = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_marginLeft, DV);
         if (checkNum(marginLeft)) {
             marginLeft = PrecentHelper.i().getPrecentByWidth(marginLeft);
+        } else if (checkNum(margin)) {
+            marginLeft = margin;
         }
 
-        marginRight = typedArray.getInt(R.styleable.adaptation_p_layout_margin_right, DV);
+        marginRight = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_marginRight, DV);
         if (checkNum(marginRight)) {
             marginRight = PrecentHelper.i().getPrecentByWidth(marginRight);
+        } else if (checkNum(margin)) {
+            marginRight = margin;
         }
 
-        marginTop = typedArray.getInt(R.styleable.adaptation_p_layout_margin_top, DV);
+        marginTop = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_marginTop, DV);
         if (checkNum(marginTop)) {
             marginTop = PrecentHelper.i().getPrecentByHeight(marginTop);
+        } else if (checkNum(margin)) {
+            marginTop = margin;
         }
 
-        marginBottom = typedArray.getInt(R.styleable.adaptation_p_layout_margin_bottom, DV);
+        marginBottom = typedArray.getLayoutDimension(R.styleable.Precent_android_layout_marginBottom, DV);
         if (checkNum(marginBottom)) {
             marginBottom = PrecentHelper.i().getPrecentByHeight(marginBottom);
+        } else if (checkNum(margin)) {
+            marginBottom = margin;
         }
     }
 

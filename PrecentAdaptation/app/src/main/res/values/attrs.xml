@@ -18,4 +18,22 @@
 
 
     </declare-styleable>
+
+    <declare-styleable name="Precent">
+
+        <attr name="android:layout_width" />
+        <attr name="android:layout_height" />
+
+        <attr name="android:layout_margin" />
+        <attr name="android:layout_marginLeft" />
+        <attr name="android:layout_marginTop" />
+        <attr name="android:layout_marginRight" />
+        <attr name="android:layout_marginBottom" />
+
+        <attr name="android:padding" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+    </declare-styleable>
 </resources>

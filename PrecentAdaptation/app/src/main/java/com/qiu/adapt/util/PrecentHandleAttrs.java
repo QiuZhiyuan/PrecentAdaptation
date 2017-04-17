@@ -108,7 +108,11 @@ public class PrecentHandleAttrs {
         }
     }
 
-    public void modifyPadding(View view) {
+    public void modifyView(View view) {
+        modifyPadding(view);
+    }
+
+    private void modifyPadding(View view) {
         int left, top, right, bottom;
         if (paddingLeft > 0) {
             left = paddingLeft;

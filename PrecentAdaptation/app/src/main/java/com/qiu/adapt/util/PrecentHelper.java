@@ -1,11 +1,14 @@
 package com.qiu.adapt.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
 
 /**
@@ -70,8 +73,6 @@ public final class PrecentHelper {
         density = metric.density;
 
         isInited = true;
-        Log.d("qiuzhiyuan", "designWidth:" + designWidth + " designHeight:" + designHeight
-                + " screenWidth:" + screenWidth + " screenHeight:" + screenHeight + " density:" + density);
     }
 
     public int getDesignWidth() {
@@ -113,7 +114,26 @@ public final class PrecentHelper {
         return height;
     }
 
+    public void adaptView(View view) {
+        if (view == null) {
+            return;
+        }
+        if (view.getLayoutParams() instanceof HandleParams) {
+            PrecentHandleAttrs handleAttrs = ((HandleParams) view.getLayoutParams()).getHandleAttrs();
+            handleAttrs.modifyView(view);
+        }
+    }
+
+    public PrecentHandleAttrs getHandleAttrs(Context context, AttributeSet attributeSet) {
+        return new PrecentHandleAttrs(context, attributeSet);
+
+    }
+
     public static void recycle() {
         instance = null;
+    }
+
+    public interface HandleParams {
+        PrecentHandleAttrs getHandleAttrs();
     }
 }

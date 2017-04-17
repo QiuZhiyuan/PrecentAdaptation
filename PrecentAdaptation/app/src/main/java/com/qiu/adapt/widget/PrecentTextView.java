@@ -29,7 +29,7 @@ public class PrecentTextView extends TextView {
     @Override
     public void setLayoutParams(ViewGroup.LayoutParams params) {
         super.setLayoutParams(params);
-        precentHandleAttrs.modifyLayoutParams(params);
+        precentHandleAttrs.modifyView(this);
 
     }
 }

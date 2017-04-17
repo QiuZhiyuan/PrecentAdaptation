@@ -30,7 +30,7 @@
             android:background="#000000"
             android:text="HelloWorld"
             android:textColor="#ffffff"
-            adaptation:p_margin_top="50" />
+            adaptation:p_layout_margin_top="50" />
     </com.qiu.adaptation.demo.widget.PrecentLinearLayout>
 
 </com.qiu.adaptation.demo.widget.PrecentRelativeLayout>

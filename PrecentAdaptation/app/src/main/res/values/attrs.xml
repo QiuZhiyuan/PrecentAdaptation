@@ -3,16 +3,19 @@
     <declare-styleable name="adaptation">
         <attr name="p_layout_width" format="integer" />
         <attr name="p_layout_height" format="integer" />
+
+        <attr name="p_layout_margin" format="integer" />
+        <attr name="p_layout_margin_top" format="integer" />
+        <attr name="p_layout_margin_left" format="integer" />
+        <attr name="p_layout_margin_right" format="integer" />
+        <attr name="p_layout_margin_bottom" format="integer" />
+
+        <attr name="p_padding" format="integer" />
         <attr name="p_padding_top" format="integer" />
         <attr name="p_padding_left" format="integer" />
         <attr name="p_padding_right" format="integer" />
         <attr name="p_padding_bottom" format="integer" />
-        <attr name="p_margin_top" format="integer" />
-        <attr name="p_margin_left" format="integer" />
-        <attr name="p_margin_right" format="integer" />
-        <attr name="p_margin_bottom" format="integer" />
 
-        <attr name="p_text_size" format="integer" />
 
     </declare-styleable>
 </resources>

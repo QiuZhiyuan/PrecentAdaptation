@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.qiu.adapt.util.PrecentEntry;
+import com.qiu.adapt.util.PrecentHandleAttrs;
 
 /**
  * Created by qiu on 16/11/23.
@@ -13,12 +13,12 @@ import com.qiu.adapt.util.PrecentEntry;
 
 public class PrecentTextView extends TextView {
 
-    private PrecentEntry precentEntry;
+    private PrecentHandleAttrs precentHandleAttrs;
 
     public PrecentTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        precentEntry = new PrecentEntry(context,attrs);
+        precentHandleAttrs = new PrecentHandleAttrs(context, attrs);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class PrecentTextView extends TextView {
     @Override
     public void setLayoutParams(ViewGroup.LayoutParams params) {
         super.setLayoutParams(params);
-        precentEntry.modifyLayoutParams(params);
+        precentHandleAttrs.modifyLayoutParams(params);
 
     }
 }

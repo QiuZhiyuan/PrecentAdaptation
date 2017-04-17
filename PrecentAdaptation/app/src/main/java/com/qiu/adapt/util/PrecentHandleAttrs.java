@@ -12,19 +12,11 @@ import com.qiu.adapt.R;
  * Created by qiu on 17/4/12.
  */
 
-public class PrecentEntry {
+public class PrecentHandleAttrs {
 
     private int width;
 
     private int height;
-
-    private int marginTop;
-
-    private int marginLeft;
-
-    private int marginRight;
-
-    private int marginBottom;
 
     private int paddingTop;
 
@@ -34,67 +26,111 @@ public class PrecentEntry {
 
     private int paddingBottom;
 
+    private int marginTop;
+
+    private int marginLeft;
+
+    private int marginRight;
+
+    private int marginBottom;
+
     private static int DV = -1;
 
 
-    public PrecentEntry(Context context, AttributeSet attrs) {
+    public PrecentHandleAttrs(Context context, AttributeSet attrs) {
         if (context == null || attrs == null) {
             return;
         }
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.adaptation);
+        initParams(typedArray);
+        typedArray.recycle();
+    }
+
+    protected void initParams(TypedArray typedArray) {
         if (typedArray == null) {
             return;
         }
         width = typedArray.getInt(R.styleable.adaptation_p_layout_width, DV);
         if (checkNum(width)) {
-            width = PrecentSizeUtil.i().getPrecentByWidth(width);
+            width = PrecentHelper.i().getPrecentByWidth(width);
         }
         height = typedArray.getInt(R.styleable.adaptation_p_layout_height, DV);
         if (checkNum(height)) {
-            height = PrecentSizeUtil.i().getPrecentByHeight(height);
+            height = PrecentHelper.i().getPrecentByHeight(height);
         }
 
+        initPaddings(typedArray);
+        initMargins(typedArray);
+
+    }
+
+    private void initPaddings(TypedArray typedArray) {
         paddingLeft = typedArray.getInt(R.styleable.adaptation_p_padding_left, DV);
         if (checkNum(paddingLeft)) {
-            paddingLeft = PrecentSizeUtil.i().getPrecentByWidth(paddingLeft);
+            paddingLeft = PrecentHelper.i().getPrecentByWidth(paddingLeft);
         }
         paddingRight = typedArray.getInt(R.styleable.adaptation_p_padding_right, DV);
         if (checkNum(paddingRight)) {
-            paddingRight = PrecentSizeUtil.i().getPrecentByWidth(paddingLeft);
+            paddingRight = PrecentHelper.i().getPrecentByWidth(paddingLeft);
         }
 
         paddingTop = typedArray.getInt(R.styleable.adaptation_p_padding_top, DV);
         if (checkNum(paddingTop)) {
-            paddingTop = PrecentSizeUtil.i().getPrecentByHeight(paddingTop);
+            paddingTop = PrecentHelper.i().getPrecentByHeight(paddingTop);
         }
 
         paddingBottom = typedArray.getInt(R.styleable.adaptation_p_padding_bottom, DV);
         if (checkNum(paddingBottom)) {
-            paddingBottom = PrecentSizeUtil.i().getPrecentByHeight(paddingBottom);
+            paddingBottom = PrecentHelper.i().getPrecentByHeight(paddingBottom);
         }
+    }
 
-        marginLeft = typedArray.getInt(R.styleable.adaptation_p_margin_left, DV);
+
+    private void initMargins(TypedArray typedArray) {
+        marginLeft = typedArray.getInt(R.styleable.adaptation_p_layout_margin_left, DV);
         if (checkNum(marginLeft)) {
-            marginLeft = PrecentSizeUtil.i().getPrecentByWidth(marginLeft);
+            marginLeft = PrecentHelper.i().getPrecentByWidth(marginLeft);
         }
 
-        marginRight = typedArray.getInt(R.styleable.adaptation_p_margin_right, DV);
+        marginRight = typedArray.getInt(R.styleable.adaptation_p_layout_margin_right, DV);
         if (checkNum(marginRight)) {
-            marginRight = PrecentSizeUtil.i().getPrecentByWidth(marginRight);
+            marginRight = PrecentHelper.i().getPrecentByWidth(marginRight);
         }
 
-        marginTop = typedArray.getInt(R.styleable.adaptation_p_margin_top, DV);
+        marginTop = typedArray.getInt(R.styleable.adaptation_p_layout_margin_top, DV);
         if (checkNum(marginTop)) {
-            marginTop = PrecentSizeUtil.i().getPrecentByHeight(marginTop);
+            marginTop = PrecentHelper.i().getPrecentByHeight(marginTop);
         }
 
-        marginBottom = typedArray.getInt(R.styleable.adaptation_p_margin_bottom, DV);
+        marginBottom = typedArray.getInt(R.styleable.adaptation_p_layout_margin_bottom, DV);
         if (checkNum(marginBottom)) {
-            marginBottom = PrecentSizeUtil.i().getPrecentByHeight(marginBottom);
+            marginBottom = PrecentHelper.i().getPrecentByHeight(marginBottom);
         }
+    }
 
-        typedArray.recycle();
-
+    public void modifyPadding(View view) {
+        int left, top, right, bottom;
+        if (paddingLeft > 0) {
+            left = paddingLeft;
+        } else {
+            left = view.getPaddingLeft();
+        }
+        if (paddingTop > 0) {
+            top = paddingTop;
+        } else {
+            top = view.getPaddingTop();
+        }
+        if (paddingRight > 0) {
+            right = paddingRight;
+        } else {
+            right = view.getPaddingRight();
+        }
+        if (paddingBottom > 0) {
+            bottom = paddingBottom;
+        } else {
+            bottom = view.getPaddingBottom();
+        }
+        view.setPadding(left, top, right, bottom);
     }
 
     public void modifyLayoutParams(ViewGroup.LayoutParams params) {
@@ -136,32 +172,7 @@ public class PrecentEntry {
         }
     }
 
-    public void modifyPadding(View view) {
-        int left, top, right, bottom;
-        if (paddingLeft > 0) {
-            left = paddingLeft;
-        } else {
-            left = view.getPaddingLeft();
-        }
-        if (paddingTop > 0) {
-            top = paddingTop;
-        } else {
-            top = view.getPaddingTop();
-        }
-        if (paddingRight > 0) {
-            right = paddingRight;
-        } else {
-            right = view.getPaddingRight();
-        }
-        if (paddingBottom > 0) {
-            bottom = paddingBottom;
-        } else {
-            bottom = view.getPaddingBottom();
-        }
-        view.setPadding(left, top, right, bottom);
-    }
-
-    private boolean checkNum(int num) {
+    protected boolean checkNum(float num) {
         if (num > 0) {
             return true;
         }

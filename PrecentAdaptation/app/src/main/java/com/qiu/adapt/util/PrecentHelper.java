@@ -12,12 +12,12 @@ import android.view.WindowManager;
  * Created by qiu on 16/11/22.
  */
 
-public class PrecentSizeUtil {
-    private PrecentSizeUtil() {
+public final class PrecentHelper {
+    private PrecentHelper() {
 
     }
 
-    private static PrecentSizeUtil instance = null;
+    private static PrecentHelper instance = null;
 
     private int designWidth = 0;
 
@@ -31,18 +31,22 @@ public class PrecentSizeUtil {
 
     private float density = 0;
 
+    private boolean isInited = false;
+
     private static final String META_DESIGN_WIDTH = "design_width";
     private static final String META_DESIGN_HEIGHT = "design_height";
 
-
-    public static PrecentSizeUtil i() {
+    public static PrecentHelper i() {
         if (instance == null) {
-            instance = new PrecentSizeUtil();
+            instance = new PrecentHelper();
         }
         return instance;
     }
 
     public void init(Activity context) {
+        if (context == null || isInited) {
+            return;
+        }
 
         PackageManager packageManager = context.getPackageManager();
         try {
@@ -65,7 +69,7 @@ public class PrecentSizeUtil {
         screenHeight = metric.heightPixels;
         density = metric.density;
 
-
+        isInited = true;
         Log.d("qiuzhiyuan", "designWidth:" + designWidth + " designHeight:" + designHeight
                 + " screenWidth:" + screenWidth + " screenHeight:" + screenHeight + " density:" + density);
     }

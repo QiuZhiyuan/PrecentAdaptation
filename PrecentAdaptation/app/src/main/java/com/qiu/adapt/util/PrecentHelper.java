@@ -1,12 +1,9 @@
 package com.qiu.adapt.util;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,9 +19,9 @@ public final class PrecentHelper {
 
     private static PrecentHelper instance = null;
 
-    private int designWidth = 0;
+    private int designWidth = 1;
 
-    private int designHeight = 0;
+    private int designHeight = 1;
 
     private float designDensity = 1;
 
@@ -39,6 +36,10 @@ public final class PrecentHelper {
     private static final String META_DESIGN_WIDTH = "design_width";
     private static final String META_DESIGN_HEIGHT = "design_height";
     private static final String META_DESIGN_DENSITY = "design_density";
+
+    private float rateWidth;
+
+    private float rateHeight;
 
     public static PrecentHelper i() {
         if (instance == null) {
@@ -61,9 +62,8 @@ public final class PrecentHelper {
                 designDensity = (int) applicationInfo.metaData.get(META_DESIGN_DENSITY);
             }
 
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            Log.e("qiuzhiyuan", "name not found exception");
         }
 
         WindowManager windowManager = context.getWindowManager();
@@ -75,21 +75,24 @@ public final class PrecentHelper {
         density = metric.density;
 
         isInited = true;
+
+        rateWidth = getDesignDensity() / getDensity() * getScreenWidth() / getDesignWidth();
+        rateHeight = getDesignDensity() / getDensity() * getScreenHeight() / getDesignHeight();
     }
 
-    public int getDesignWidth() {
+    private int getDesignWidth() {
         return designWidth;
     }
 
-    public int getDesignHeight() {
+    private int getDesignHeight() {
         return designHeight;
     }
 
-    public int getScreenWidth() {
+    private int getScreenWidth() {
         return screenWidth;
     }
 
-    public int getScreenHeight() {
+    private int getScreenHeight() {
         return screenHeight;
     }
 
@@ -97,23 +100,24 @@ public final class PrecentHelper {
         return density;
     }
 
-    public float getDesignDensity() {
+    private float getDesignDensity() {
         return designDensity;
     }
 
-    public int getPrecentByWidth(int width) {
+    public int getPrecentPxByWidth(int width) {
         if (getDesignWidth() > 0 && getScreenWidth() > 0) {
-            return (int) ((width / (float) getDesignWidth() * getScreenWidth()) * getDesignDensity() / getDensity());
+            return (int) (width * rateWidth);
+        } else {
+            return width;
         }
-        return width;
     }
 
-    public int getPrecentByHeight(int height) {
+    public int getPrecentPxByHeight(int height) {
         if (getDesignHeight() > 0 && getScreenHeight() > 0) {
-            return (int) (height / (float) getDesignHeight() * getScreenHeight() * getDesignDensity() / getDensity());
+            return (int) (height * rateHeight);
+        } else {
+            return height;
         }
-
-        return height;
     }
 
     public void adaptView(View view) {
@@ -124,11 +128,6 @@ public final class PrecentHelper {
             PrecentHandleAttrs handleAttrs = ((HandleParams) view.getLayoutParams()).getHandleAttrs();
             handleAttrs.modifyView(view);
         }
-    }
-
-    public PrecentHandleAttrs getHandleAttrs(Context context, AttributeSet attributeSet) {
-        return new PrecentHandleAttrs(context, attributeSet);
-
     }
 
     public static void recycle() {
